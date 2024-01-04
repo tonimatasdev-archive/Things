@@ -3,21 +3,23 @@ plugins {
 }
 
 group = "dev.tonimatas"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
-repositories {
-    mavenCentral()
+base.archivesName.set("Things")
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(20))
+    withSourcesJar()
 }
 
-tasks.withType<Jar> {
-    manifest {
-        attributes(
-        "Main-Class" to "dev.tonimatas.EditedDiscordMsg",
-        "Multi-Release" to true
-        )
-    }
+repositories {
+
 }
 
 dependencies {
 
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
