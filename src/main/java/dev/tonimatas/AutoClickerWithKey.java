@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class AutoClickerWithKey extends JFrame {
     private boolean autoClickerActive = false;
     private Robot robot;
-    private double delayBetweenClicks = 0.1;
+    private long delayBetweenClicks = 1;
 
     public AutoClickerWithKey() {
         try {
@@ -42,11 +42,11 @@ public class AutoClickerWithKey extends JFrame {
             while (autoClickerActive) {
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                //try {
-                //    Thread.sleep(delayBetweenClicks);
-                //} catch (InterruptedException e) {
-                //    e.printStackTrace();
-                //}
+                try {
+                    Thread.sleep(delayBetweenClicks);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
