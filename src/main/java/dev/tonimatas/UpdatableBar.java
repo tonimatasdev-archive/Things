@@ -1,8 +1,8 @@
 package dev.tonimatas;
 
 public class UpdatableBar {
-    private static final String filledChar = "▰";
-    private static final String voidChar = "▱";
+    private static final String filledChar = "#";
+    private static final String voidChar = "-";
     private static final int numberChars = 10;
     private static final long everyMillis = 1000;
 

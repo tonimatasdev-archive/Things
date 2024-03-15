@@ -8,7 +8,7 @@ version = "1.0.0"
 base.archivesName.set("Things")
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(20))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     withSourcesJar()
 }
 
