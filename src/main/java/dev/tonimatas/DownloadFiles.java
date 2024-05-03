@@ -4,21 +4,24 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 
 public class DownloadFiles {
     public static final String fileURL = "https://piston-data.mojang.com/v1/objects/0b4dba049482496c507b2387a73a913230ebbd76/server.txt";
 
     public static void main(String[] args) {
         try {
-            URL url = new URL(fileURL);
+            URL url = URI.create(fileURL).toURL();
             URLConnection connection = url.openConnection();
             connection.connect();
 
             File dir = new File("downloads");
             if (!dir.exists()) {
-                dir.mkdirs();
+                if (dir.mkdirs()) {
+                    System.out.println("Directory created.");
+                } else {
+                    System.out.println("Directory not created.");
+                }
             }
 
             String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1);
