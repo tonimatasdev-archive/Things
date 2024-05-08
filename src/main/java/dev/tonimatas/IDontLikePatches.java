@@ -6,6 +6,7 @@ import java.util.*;
 
 public class IDontLikePatches {
     public static Map<String, String> rawPatches = new HashMap<>();
+    
     public static void main(String[] args) {
         List<File> patches = getAllPatchesFromFolder("patches");
 
