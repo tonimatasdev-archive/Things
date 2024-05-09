@@ -11,13 +11,11 @@ import java.text.DecimalFormat;
 
 public class DownloadFiles {
     public static final String fileURL = "https://cdimage.ubuntu.com/kubuntu/releases/24.04/release/kubuntu-24.04-desktop-amd64.iso";
-    private static final long everyMillis = 1000;
     private static final DecimalFormat oneDecimalFormat = new DecimalFormat("#.#");
+    private static final long everyMillis = 1000;
     private static boolean finished = false;
 
     public static void main(String[] args) {
-        
-        
         try {
             URL url = URI.create(fileURL).toURL();
             URLConnection connection = url.openConnection();
@@ -35,7 +33,7 @@ public class DownloadFiles {
             String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1);
             String saveFilePath = "downloads" + File.separator + fileName;
             File resultFile = new File(saveFilePath);
-            
+
             new Thread(() -> {
                 double oldFileSizeInMB = 0;
                 int duration = 0;
@@ -44,6 +42,7 @@ public class DownloadFiles {
                 
                 while (!finished) {
                     try {
+                        //noinspection BusyWait
                         Thread.sleep(everyMillis);
 
                         double fileSizeInMB = (double) resultFile.length() / 1048576;
@@ -54,25 +53,28 @@ public class DownloadFiles {
                         
                         duration++;
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        System.out.println("Error on calculate download status.");
                     }
                 }
             }).start();
+
             try (InputStream inputStream = connection.getInputStream();
                  FileOutputStream outputStream = new FileOutputStream(saveFilePath)) {
                 
                 byte[] buffer = new byte[1024];
                 int bytesRead;
+
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                 }
+
                 finished = true;
                 double fileSizeInMB = (double) resultFile.length() / 1048576;
 
                 System.out.println("File downloaded to: " + saveFilePath + " | " + oneDecimalFormat.format(fileSizeInMB) + " MB");
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error on download the file.");
         }
     }
 }
