@@ -45,6 +45,9 @@ public class DownloadFiles {
                         //noinspection BusyWait
                         Thread.sleep(everyMillis);
 
+                        if (finished) return;
+                        
+
                         double fileSizeInMB = (double) resultFile.length() / 1048576;
                         double diff = fileSizeInMB - oldFileSizeInMB;
                         oldFileSizeInMB = fileSizeInMB;
@@ -70,8 +73,8 @@ public class DownloadFiles {
 
                 finished = true;
                 double fileSizeInMB = (double) resultFile.length() / 1048576;
-
-                System.out.println("File downloaded to: " + saveFilePath + " | " + oneDecimalFormat.format(fileSizeInMB) + " MB");
+                
+                System.out.println("\nFile downloaded to: " + saveFilePath + " | " + oneDecimalFormat.format(fileSizeInMB) + " MB");
             }
         } catch (IOException e) {
             System.out.println("Error on download the file.");
