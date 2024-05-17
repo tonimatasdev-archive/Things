@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Grid {
-    public static Map<Integer, List<int[]>> pathsMap = new HashMap<>();
-    
     public static void main(String[] args) {
         long time = System.currentTimeMillis();
         //String string = "[0,6,0]\n[5,8,7]\n[0,9,0]";
