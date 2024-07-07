@@ -1,1 +1,1 @@
-This is for test things and make basic stuff.
+This is for test/learn things and make basic stuff.
