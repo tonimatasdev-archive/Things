@@ -8,13 +8,14 @@ public class UpdatableBar {
 
 
 
+    @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
         Runtime runtime = Runtime.getRuntime();
         int max = (int) (runtime.totalMemory() / (1024 * 1024));
 
         int part = max / numberChars;
 
-        while (true) {
+        for (;;) {
             int now = (int) ((runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024));
 
             int filledParts = now / part;
@@ -30,7 +31,7 @@ public class UpdatableBar {
             Thread.sleep(everyMillis);
             System.out.print("\r" + newMessage + " " + otherMessage);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
