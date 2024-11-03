@@ -1,5 +1,5 @@
 plugins {
-    id("java")
+    java
 }
 
 group = "dev.tonimatas"
@@ -8,7 +8,6 @@ version = "1.0.0"
 base.archivesName.set("Things")
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     withSourcesJar()
 }
 
